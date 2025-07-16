@@ -81,16 +81,9 @@ export const supportedLanguages = [
   }),
   LanguageDescription.of({
     name: 'C++',
-    extensions: ['cpp', 'cc', 'cxx'],
+    extensions: ['cpp'],
     async load() {
       return import('@codemirror/lang-cpp').then((module) => module.cpp());
-    },
-  }),
-  LanguageDescription.of({
-    name: 'Wasm',
-    extensions: ['wat'],
-    async load() {
-      return import('@codemirror/lang-wast').then((module) => module.wast());
     },
   }),
   
@@ -210,4 +203,16 @@ export async function getLanguage(fileName: string) {
   }
 
   return undefined;
+}
+
+// Framework detection helper
+export function detectFramework(files: Record<string, any>): string | null {
+  if (files['next.config.js'] || files['next.config.ts']) return 'nextjs';
+  if (files['nuxt.config.js'] || files['nuxt.config.ts']) return 'nuxt';
+  if (files['svelte.config.js'] || files['vite.config.js']?.includes('svelte')) return 'sveltekit';
+  if (files['vue.config.js'] || files['vite.config.js']?.includes('vue')) return 'vue';
+  if (files['angular.json']) return 'angular';
+  if (files['gatsby-config.js']) return 'gatsby';
+  if (files['remix.config.js']) return 'remix';
+  return null;
 }

@@ -1,0 +1,205 @@
+/* Enhanced Theme Variables */
+:root {
+  /* Custom theme support */
+  --theme-primary: var(--custom-primary, theme('colors.accent.500'));
+  --theme-secondary: var(--custom-secondary, theme('colors.accent.600'));
+  --theme-accent: var(--custom-accent, theme('colors.accent.400'));
+  --theme-background: var(--custom-background, var(--bolt-elements-bg-depth-1));
+  --theme-surface: var(--custom-surface, var(--bolt-elements-bg-depth-2));
+  --theme-text: var(--custom-text, var(--bolt-elements-textPrimary));
+
+  /* Enhanced mobile breakpoints */
+  --mobile-breakpoint: 640px;
+  --tablet-breakpoint: 768px;
+  --desktop-breakpoint: 1024px;
+  
+  /* Improved spacing system */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Enhanced shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Enhanced Dark Theme */
+:root[data-theme='dark'] {
+  --bolt-elements-bg-depth-1: #0a0a0a;
+  --bolt-elements-bg-depth-2: #111111;
+  --bolt-elements-bg-depth-3: #1a1a1a;
+  --bolt-elements-bg-depth-4: #222222;
+  
+  --bolt-elements-textPrimary: #ffffff;
+  --bolt-elements-textSecondary: #a3a3a3;
+  --bolt-elements-textTertiary: #737373;
+  
+  --bolt-elements-borderColor: #2a2a2a;
+  --bolt-elements-borderColorActive: #3a3a3a;
+  
+  /* Enhanced code editor colors */
+  --bolt-elements-code-background: #1e1e1e;
+  --bolt-elements-code-text: #d4d4d4;
+  
+  /* Better terminal colors */
+  --bolt-terminal-background: #0d1117;
+  --bolt-terminal-foreground: #c9d1d9;
+}
+
+/* Enhanced Light Theme */
+:root[data-theme='light'] {
+  --bolt-elements-bg-depth-1: #ffffff;
+  --bolt-elements-bg-depth-2: #f8fafc;
+  --bolt-elements-bg-depth-3: #f1f5f9;
+  --bolt-elements-bg-depth-4: #e2e8f0;
+  
+  --bolt-elements-textPrimary: #0f172a;
+  --bolt-elements-textSecondary: #475569;
+  --bolt-elements-textTertiary: #64748b;
+  
+  --bolt-elements-borderColor: #e2e8f0;
+  --bolt-elements-borderColorActive: #cbd5e1;
+  
+  /* Enhanced code editor colors */
+  --bolt-elements-code-background: #f8fafc;
+  --bolt-elements-code-text: #0f172a;
+  
+  /* Better terminal colors */
+  --bolt-terminal-background: #ffffff;
+  --bolt-terminal-foreground: #24292f;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 640px) {
+  :root {
+    --chat-max-width: 100%;
+    --chat-min-width: 100%;
+    --workbench-width: 100%;
+    --header-height: 48px;
+  }
+  
+  .mobile-hidden {
+    display: none !important;
+  }
+  
+  .mobile-full-width {
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  :root {
+    --chat-max-width: 32rem;
+    --chat-min-width: 500px;
+    --workbench-width: calc(100% - 500px);
+  }
+  
+  .tablet-hidden {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .desktop-only {
+    display: block !important;
+  }
+}
+
+/* Enhanced animations */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Smooth transitions */
+.smooth-transition {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced focus styles */
+.focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--theme-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Better scrollbars */
+.custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: var(--bolt-elements-bg-depth-2);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--bolt-elements-borderColor);
+    border-radius: 4px;
+    
+    &:hover {
+      background: var(--bolt-elements-borderColorActive);
+    }
+  }
+}
+
+/* Drag and drop styles */
+.drag-over {
+  border: 2px dashed var(--theme-primary) !important;
+  background-color: var(--theme-primary)10 !important;
+}
+
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(90deg, 
+    var(--bolt-elements-bg-depth-2) 25%, 
+    var(--bolt-elements-bg-depth-3) 50%, 
+    var(--bolt-elements-bg-depth-2) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
